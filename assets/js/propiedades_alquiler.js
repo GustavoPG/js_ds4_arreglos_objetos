@@ -1,56 +1,71 @@
-export const propiedades_alquiler = [
-    {
-        nombre: 'Alquiler 1',
-        src: 'images/alquiler1.jpg',
-        descripcion: 'Descripción 1',
-        ubicacion: 'Ubicación 1',
-        habitaciones: 4,
-        costo: 600000,
-        smoke: true,
-        pets: true
-    },
-    {
-        nombre: 'Alquiler 2',
-        src: 'images/alquiler2.jpg',
-        descripcion: 'Descripción 2',
-        ubicacion: 'Ubicación 2',
-        habitaciones: 2,
-        costo: 420000,
-        smoke: true,
-        pets: false
-    },
-    {
-        nombre: 'Alquiler 3',
-        src: 'images/alquiler3.jpg',
-        descripcion: 'Descripción 3',
-        ubicacion: 'Ubicación 3',
-        habitaciones: 2,
-        costo: 450000,
-        smoke: false,
-        pets: false
-    },
-    {
-        nombre: 'Alquiler 4',
-        src: 'images/alquiler4.jpg',
-        descripcion: 'Descripción 4',
-        ubicacion: 'Ubicación 4',
-        habitaciones: 3,
-        costo: 550000,
-        smoke: true,
-        pets: false
-    },
-    {
-        nombre: 'Alquiler 5',
-        src: 'images/alquiler5.jpg',
-        descripcion: 'Descripción 5',
-        ubicacion: 'Ubicación 5',
-        habitaciones: 1,
-        costo: 380000,
-        smoke: false,
-        pets: true
+import {objeto_alquiler} from './objeto_alquiler.js';
+
+LoadAlquiler();
+
+function LoadAlquiler(){
+    let cont = 1;
+    const elemento = document.getElementById('alquiler');
+    let doc = `<h2>Propiedades en Alquiler</h2>
+                <div class="row">`
+
+    for (let i = 0; i < objeto_alquiler.length; i++){
+        doc += `<div class="col-md-4 mb-4">
+                <div class="card">
+            <img src="${objeto_alquiler[i].src}" class="card-img-top" alt="${objeto_alquiler[i].nombre}" />
+            <div class="card-body">
+                <h5 class="card-title">
+                    ${objeto_alquiler[i].nombre}
+                </h5>
+                <p class="card-text">
+                    ${objeto_alquiler[i].descripcion}
+                </p>
+                <p>
+                    <i class="fas fa-map-marker-alt"></i> 123 Main Street,
+                    ${objeto_alquiler[i].ubicacion}
+                </p>
+                <p>
+                    <i class="fas fa-bed"></i> ${objeto_alquiler[i].habitaciones} Habitaciones |
+                    <i class="fas fa-bath"></i> 2 Baños
+                </p>
+                <p><i class="fas fa-dollar-sign"></i> ${formatearNumero(objeto_alquiler[i].costo)}</p>
+                <p class="text-danger">`
+                if (objeto_alquiler[i].smoke === true)  {
+                    doc += `<p class="text-success">
+                            <i class="fas fa-smoking"></i> Permitido fumar
+                            </p>`
+                }else{
+                    doc += `<p class="text-danger">
+                            <i class="fas fa-smoking-ban"></i> No se permite fumar
+                            </p>`
+                }
+
+                if (objeto_alquiler[i].pets === true)  {
+                    doc += `<p class="text-success">
+                            <i class="fas fa-paw"></i> Mascotas permitidas
+                            </p>`
+                }else{
+                    doc += `<p class="text-danger">
+                            <i class="fas fa-ban"></i> No se permiten mascotas
+                            </p>`        
+                }
+            doc +=`</div>
+                    </div>
+                    </div>`
+                    
+                    if (cont % 3 === 0 && cont < objeto_alquiler.length){
+                         doc +=`</div>
+                         <div class="row">` 
+                     } 
+
+                     cont++;
     }
-]
 
-//export default propiedades_alquiler;
+        doc += `</div>`
 
-//export default propiedades_alquiler;
+        elemento.innerHTML = doc;
+}
+
+//Separador de miles
+function formatearNumero(numero){
+    return new Intl.NumberFormat("es-CL").format(numero);
+}
