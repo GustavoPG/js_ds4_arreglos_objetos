@@ -1,8 +1,13 @@
+//IMPORTACIÓN DE OBJETOS A UTILIZAR
 import {objeto_alquiler} from './objeto_alquiler.js';
 
-LoadAlquiler();
+//AL CARGAR PÁGINA LLAMAMOS FUNCIÓN
+window.onload = function(){
+    LoadAlquiler();
+}
 
-function LoadAlquiler(){
+
+let LoadAlquiler = () =>{
     let cont = 1;
     const elemento = document.getElementById('alquiler');
     let doc = `<h2>Propiedades en Alquiler</h2>
@@ -24,8 +29,7 @@ function LoadAlquiler(){
                     ${objeto_alquiler[i].ubicacion}
                 </p>
                 <p>
-                    <i class="fas fa-bed"></i> ${objeto_alquiler[i].habitaciones} Habitaciones |
-                    <i class="fas fa-bath"></i> 2 Baños
+                    <i class="fas fa-bed"></i> ${objeto_alquiler[i].habitaciones} Habitaciones
                 </p>
                 <p><i class="fas fa-dollar-sign"></i> ${formatearNumero(objeto_alquiler[i].costo)}</p>
                 <p class="text-danger">`
@@ -66,6 +70,6 @@ function LoadAlquiler(){
 }
 
 //Separador de miles
-function formatearNumero(numero){
+let formatearNumero = (numero) =>{
     return new Intl.NumberFormat("es-CL").format(numero);
 }

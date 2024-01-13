@@ -1,8 +1,12 @@
+//IMPORTACIÓN DE OBJETOS A UTILIZAR
 import {objeto_ventas} from './objeto_ventas.js';
 
-LoadVentas();
+//AL CARGAR PÁGINA LLAMAMOS FUNCIÓN
+window.onload = function(){
+    LoadVentas();
+}
 
-function LoadVentas(){
+let LoadVentas = () =>{
     let cont = 1;
     const elemento = document.getElementById('venta');
     let doc = `<h2>Propiedades en Venta</h2>
@@ -24,8 +28,7 @@ function LoadVentas(){
                     ${objeto_ventas[i].ubicacion}
                 </p>
                 <p>
-                    <i class="fas fa-bed"></i> ${objeto_ventas[i].habitaciones} Habitaciones |
-                    <i class="fas fa-bath"></i> 2 Baños
+                    <i class="fas fa-bed"></i> ${objeto_ventas[i].habitaciones} Habitaciones
                 </p>
                 <p><i class="fas fa-dollar-sign"></i> ${formatearNumero(objeto_ventas[i].costo)}</p>
                 <p class="text-danger">`
@@ -66,6 +69,6 @@ function LoadVentas(){
 }
 
 //Separador de miles
-function formatearNumero(numero){
+let formatearNumero = (numero) =>{
     return new Intl.NumberFormat("es-CL").format(numero);
 }

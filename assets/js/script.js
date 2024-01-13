@@ -1,18 +1,15 @@
+//IMPORTACIÓN DE OBJETOS A UTILIZAR
 import {objeto_alquiler} from './objeto_alquiler.js';
 import {objeto_ventas} from './objeto_ventas.js';
 
-console.log(objeto_alquiler);
+//AL CARGAR PÁGINA LLAMAMOS FUNCIONES
+window.onload = function(){
+    LoadRenta();
+    LoadVentas();
+}
 
-console.log(objeto_ventas);
-// for(let i = 0; i < propiedades_alquiler.lenght; i++)
-// {
-//     console.log(propiedades_alquiler[i]);
-// }
 
-LoadRenta();
-LoadVentas();
-
-function LoadRenta(){
+let LoadRenta = () =>{
     const elemento = document.getElementById('alquiler');
     let doc = `<h2>Propiedades en alquiler</h2>
                 <div class="row">            
@@ -33,8 +30,7 @@ function LoadRenta(){
                     ${objeto_alquiler[i].ubicacion}
                 </p>
                 <p>
-                    <i class="fas fa-bed"></i> ${objeto_alquiler[i].habitaciones} Habitaciones |
-                    <i class="fas fa-bath"></i> 2 Baños
+                    <i class="fas fa-bed"></i> ${objeto_alquiler[i].habitaciones}
                 </p>
                 <p><i class="fas fa-dollar-sign"></i> ${formatearNumero(objeto_alquiler[i].costo)}</p>
                 <p class="text-danger">`
@@ -68,7 +64,7 @@ function LoadRenta(){
             elemento.innerHTML = doc;
 }
 
-function LoadVentas(){
+let LoadVentas = () =>{
     const elemento = document.getElementById('venta');
     let doc = `<h2>Propiedades en venta</h2>
                 <div class="row">`
@@ -88,8 +84,7 @@ function LoadVentas(){
                     ${objeto_ventas[i].ubicacion}
                 </p>
                 <p>
-                    <i class="fas fa-bed"></i> ${objeto_ventas[i].habitaciones} Habitaciones |
-                    <i class="fas fa-bath"></i> 2 Baños
+                    <i class="fas fa-bed"></i> ${objeto_ventas[i].habitaciones} Habitaciones
                 </p>
                 <p><i class="fas fa-dollar-sign"></i> ${formatearNumero(objeto_ventas[i].costo)}</p>
                 <p class="text-danger">`
@@ -124,6 +119,6 @@ function LoadVentas(){
 }
 
 //Separador de miles
-function formatearNumero(numero){
+let formatearNumero = (numero) =>{
     return new Intl.NumberFormat("es-CL").format(numero);
 }

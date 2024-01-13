@@ -1,3 +1,4 @@
+// CREAE Y EXPORTAR OBJETO export const objeto_alquiler
 export const objeto_alquiler = [
     {
         nombre: 'Alquiler 1',

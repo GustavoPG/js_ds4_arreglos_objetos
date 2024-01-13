@@ -1,3 +1,4 @@
+// CREAE Y EXPORTAR OBJETO objeto_ventas 
 export const objeto_ventas = [
     {
         nombre: 'venta 1',
